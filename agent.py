@@ -10,7 +10,7 @@ from livekit.agents import (
     llm,
 )
 from livekit.agents.pipeline import VoicePipelineAgent
-from livekit.plugins import openai, cartesia, deepgram, silero
+from livekit.plugins import anthropic, cartesia, deepgram, silero
 
 
 load_dotenv(dotenv_path=".env.local")
@@ -41,7 +41,7 @@ async def entrypoint(ctx: JobContext):
     agent = VoicePipelineAgent(
         vad=ctx.proc.userdata["vad"],
         stt=deepgram.STT(),
-        llm=openai.LLM(model="gpt-4o-mini"),
+        llm=anthropic.LLM(model="claude-3-5-sonnet-20241022"),
         tts=cartesia.TTS(
             model="sonic",
             voice="794f9389-aac1-45b6-b726-9d9369183238",
